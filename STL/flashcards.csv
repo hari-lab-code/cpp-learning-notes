@@ -1,0 +1,47 @@
+What is the primary function of C++ STL associative and unordered associative containers?,"To store and retrieve elements based on keys, rather than by position."
+Associative containers in C++ are typically implemented internally using what data structure?,"A balanced binary search tree, such as a red-black tree."
+What is the defining characteristic of how associative containers store their elements?,The elements are always sorted by their key.
+"Name the C++ STL associative container for storing unique keys, where the values are the keys themselves.",std::set
+Which C++ associative container is used for key-value mappings where each key must be unique?,std::map
+Which C++ associative container allows for duplicate keys?,std::multiset
+Which C++ associative container allows for duplicate keys in a key-value mapping?,std::multimap
+"The time complexity for search, insert, and remove operations in an ordered associative container is _____.",O(log n)
+What type of iterators do C++ associative containers like std::map and std::set support?,Bidirectional iterators.
+When is it most appropriate to use an ordered associative container?,When you need data to be kept in sorted order or need to perform range queries.
+"In a `std::map` with keys `101` and `55`, in what order will the keys be stored?","The keys will be ordered as 55, then 101."
+Unordered associative containers in C++ are implemented internally using what data structure?,A hash table.
+How do unordered associative containers group elements?,Elements are grouped into buckets based on a hash of the key.
+Name the C++ unordered container for storing unique keys for fast lookup.,std::unordered_set
+Which C++ unordered container is used for unique key-value mappings with fast lookup?,std::unordered_map
+Which C++ unordered container allows for duplicate keys?,std::unordered_multiset
+Which C++ unordered container allows for duplicate keys in a key-value mapping?,std::unordered_multimap
+"What is the average time complexity for lookup, insert, and delete operations in an unordered associative container?","Amortized O(1), or constant time."
+What is the worst-case time complexity for operations in an unordered associative container?,O(n)
+What can cause an unordered associative container to exhibit its worst-case O(n) time complexity?,"A large number of hash collisions, where many keys map to the same bucket."
+What type of iterators do C++ unordered associative containers support?,Forward iterators only.
+What is a typical use case for unordered associative containers like `std::unordered_map`?,"Applications requiring fast lookups where order is not important, such as caching or frequency counting."
+"Feature: Internal Structure
+Associative containers use a Balanced BST, while unordered associative containers use a _____.",Hash table
+"Feature: Order
+Associative containers are sorted by key, while unordered associative containers have _____.",No specific order
+"Feature: Time Complexity
+Associative containers have O(log n) complexity, while unordered associative containers have an average complexity of _____.",O(1)
+"Feature: Iterator Type
+Associative containers support bidirectional iterators, while unordered associative containers support _____.",Forward iterators only
+"You should use an associative container when you plan to perform _____ queries (e.g., finding all elements between two keys).",range
+You should use an unordered associative container when _____ is the highest priority and element order does not matter.,speed (fast average lookup)
+What is the mnemonic to remember the data structure for ordered containers?,Ordered = Tree (think 'set the order')
+What is the mnemonic to remember the data structure for unordered containers?,Unordered = Hash (think 'fast lookups')
+What is the key difference between a `std::set` and a `std::multiset`?,"`std::multiset` allows duplicate keys, whereas `std::set` requires all keys to be unique."
+What is the key difference between a `std::map` and a `std::multimap`?,"`std::multimap` allows duplicate keys, whereas `std::map` requires all keys to be unique."
+"What can be used to tailor the behavior of associative containers, for example to use case-insensitive keys?",Custom comparators.
+What can be used to tailor the behavior of unordered associative containers?,Custom hash and equality functors.
+"In a C++ `std::set`, what acts as the key?","The value itself acts as the key, ensuring all elements are unique and sorted."
+"In associative containers like `std::set` and `std::map`, keys must be _____.",unique
+A fundamental characteristic of elements in an ordered associative container is that they follow a _____ weak ordering.,strict
+How does insertion complexity in the middle of a collection compare between sequence and associative containers?,Insertion in the middle is faster in associative containers (O(log n)) than in sequence containers.
+What is the time complexity for incrementing or decrementing an iterator in an associative container?,"Amortized constant time, O(1)."
+What is the C++ container `std::unordered_set` an example of?,An unordered associative container.
+When is it better to choose an associative container over an unordered one?,"When the predictable, sorted iteration order of elements is required for the application's logic."
+Why is iteration considered 'stable' in ordered associative containers?,Because the order of elements is predictable and always sorted by the key.
+Why is the iteration order of an unordered associative container described as 'undefined'?,"Because it depends on the hash function and the internal state of the hash table, not on the insertion order or key value."
