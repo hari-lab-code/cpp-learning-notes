@@ -1,0 +1,284 @@
+🚫 Limitations of std::set in C++
+
+1️.No duplicate elements
+A set stores only unique values.
+Duplicate insertions are ignored.
+set<int> s = {10,10,20}; // only 10,20 stored
+➡ Use multiset if duplicates are required.
+
+2️.No index-based access
+You cannot use [] or indexing.
+Only iterator-based access is allowed.
+// s[0]; ❌ not allowed
+
+3️.Slower than unordered containers
+Insert/delete/search → O(log n)
+unordered_set → O(1) average
+➡ Avoid set when order is not needed and speed matters.
+
+4️.Insertion order is NOT preserved
+Elements are stored in sorted order, not insertion order.
+set<int> s = {30,10,20}; // stored as 10,20,30
+
+5️.Elements cannot be modified
+Values inside a set are treated as const.
+auto it = s.begin();
+// *it = 100; ❌ not allowed
+➡ Must erase and reinsert.
+
+6️.Higher memory usage
+Implemented using a Red-Black Tree.
+Extra memory is required for pointers and balancing.
+
+7️.No random access iterator
+Supports bidirectional iterators only.
+it + 3 ❌ not allowed.
+
+8️.Not suitable for frequency counting
+Duplicates are not allowed.
+➡ Use map or unordered_map instead.
+-----------------------------------------------
+
+Limitations of std::map in C++ STL
+
+1️.Keys must be unique
+Duplicate keys are not allowed.
+New value overwrites the old value.
+
+map<int,int> m;
+m[1] = 10;
+m[1] = 20; // old value lost
+➡ Use multimap if duplicate keys are required.
+
+2️.Slower than unordered_map
+Insert / erase / search → O(log n)
+unordered_map → O(1) average
+➡ Avoid map when order is not required and performance is critical.
+
+3️.No index-based access
+Cannot access elements using index.
+// m[0]; ❌ invalid
+➡ Only key-based or iterator access.
+
+4️.Insertion order is NOT preserved
+Elements are stored in sorted order of keys.
+
+map<int,int> m = {{3,30},{1,10},{2,20}};
+// Stored as 1,2,3
+
+5️.Higher memory usage
+Implemented using Red-Black Tree.
+Stores pointers and balancing information.
+➡ Uses more memory than unordered_map.
+
+6️.Keys are immutable
+Keys cannot be modified after insertion.
+auto it = m.begin();
+// it->first = 5; ❌ not allowed
+➡ Must erase and reinsert with a new key.
+
+7️.No random access
+Does not support random access iterators.
+it + n ❌ not allowed.
+
+8️.Not ideal for frequency counting
+unordered_map is faster and preferred.
+
+//set forward and rearward
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+  set <int> s;
+  s.insert(5);
+  s.insert(6);
+  s.insert(3);
+  s.insert(7);
+  s.erase(7);
+  
+  for(auto it=s.begin();it !=s.end();it++)
+  {
+    cout<<*it<<" ";
+  }
+  cout<<"\n-----------------\n";
+  for(auto it=s.rbegin(); it!=s.rend();it++)
+  {
+    cout<<*it<<" ";
+  }
+  //cout << "Hello, World!";
+  return 0;
+}
+----------------------------
+//Multiset forward
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+  multiset <int> ms;
+  ms.insert(5);
+  ms.insert(6);
+  ms.insert(3);
+  ms.insert(7);
+  ms.insert(5);
+  
+  for(auto it=ms.begin(); it!=ms.end();it++)
+  {
+    cout<<*it<<" ";
+  }
+  return 0;
+}
+---------------------------------
+//unique elements in set
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+  set <int> s;
+  s.insert(4);
+  s.insert(5);
+  s.insert(6);
+  s.insert(6);//ignored 
+  s.insert(7);
+  for(auto x:s){
+    cout<<x<<" ";
+  }
+  return 0;
+}
+------------------------------
+//duplicate elements Multiset
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+  multiset <int> ms;
+  ms.insert(2);
+  ms.insert(4);
+  ms.insert(6);
+  ms.insert(8);
+  ms.insert(2);
+  for(auto it =ms.begin(); it !=ms.end(); it++)
+  {
+    cout<<*it<<" ";
+  }
+  return 0;
+}
+-----------------------------------
+//find the element in set
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+  set <int> s;
+  s.insert(4);
+  s.insert(6);
+  s.insert(7);
+  s.insert(8);
+  int x=8;
+  
+  auto it =s.find(x);
+    if(it != s.end())
+    {
+      cout<<"Element found : "<<*it<<endl;
+    }
+    else{
+      cout<<"Element not found"<<endl;
+    }
+  return 0;
+}
+----------------------------------
+//descending order set 
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+ set<int, greater<int>> s;
+ s.insert(5);
+ s.insert(6);
+ s.insert(7);
+ s.insert(8);
+ 
+ for(auto x: s)
+ {
+  cout<<x<<" ";
+ }
+  return 0;
+}
+---------------------------------
+//insert elements in map
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+  map <int,int> m;
+  m.insert({3,500});
+  
+  m[1]=200;
+  m.insert({5,600});
+  
+  for(auto x: m)
+  {
+    cout<<x.first <<"  "<<x.second<<"  ";
+  }
+  return 0;
+}
+---------------------------------
+//Which container stores key–value pairs with unique keys?
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() 
+{
+  map<int, string> m;
+  m.insert({1,"hello"});
+  
+  for(auto x:m)
+  {
+    cout<<x.first<<" " << x.second <<" ";
+  }
+  
+  cout<<m[1]<<endl;//access 
+  m[1]="world";
+  cout<<m[1]<<endl;;
+  
+  auto it=m.find(1);
+  if(it != m.end()){
+  cout<<it->first<<" "<<it->second<<endl;
+  }
+  else{
+    cout<<"Not found"<<endl;
+  }
+  //Traverse
+  for(auto it=m.begin();it != m.end(); it++)
+  {
+    cout<<it->first<< "  "<<it->second<<endl;
+  }
+  return 0;
+}
+-------------------------------
+
+🔹 Beginner map Program Questions
+1️.Write a program to insert key–value pairs into a map and print all elements.
+2️.Write a program to search a given key in a map and print "Found" or "Not Found".
+3️.Write a program to count frequency of elements in an array using map.
+4️.Write a program to erase a key from a map and display the map after deletion.
+5️.Write a program to update the value of an existing key in a map.
+6️.Write a program to print all keys in sorted order using map.
+7️.Write a program to check if a map is empty and print its size.
+8️.Write a program to iterate over a map using iterator (not range-based loop).
+
